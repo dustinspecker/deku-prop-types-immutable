@@ -13,23 +13,16 @@ const immutableInstanceCheck = (type, prop, key) => {
   }
 }
 
-const immutableInstanceCheckerFactory = name =>
-  checkerFactory(name, (prop, key) => {
-    const typeError = immutableInstanceCheck(name, prop, key)
-    if (typeError) {
-      return typeError
-    }
-  })
-
 const immutableTypeCheck = (type, prop, key) => {
   if (!Immutable[type][`is${type}`](prop)) {
     return createTypeError(type, prop, key)
   }
 }
 
-const immutableTypeCheckerFactory = name =>
+const immutableCheckerFactory = (name, instanceCheck = false) =>
   checkerFactory(name, (prop, key) => {
-    const typeError = immutableTypeCheck(name, prop, key)
+    const typeError = instanceCheck ? immutableInstanceCheck(name, prop, key)
+      : immutableTypeCheck(name, prop, key)
     if (typeError) {
       return typeError
     }
@@ -37,30 +30,30 @@ const immutableTypeCheckerFactory = name =>
 
 module.exports = {
   get Iterable() {
-    return immutableTypeCheckerFactory('Iterable')
+    return immutableCheckerFactory('Iterable')
   },
   get List() {
-    return immutableTypeCheckerFactory('List')
+    return immutableCheckerFactory('List')
   },
   get Map() {
-    return immutableTypeCheckerFactory('Map')
+    return immutableCheckerFactory('Map')
   },
   get OrderedMap() {
-    return immutableTypeCheckerFactory('OrderedMap')
+    return immutableCheckerFactory('OrderedMap')
   },
   get OrderedSet() {
-    return immutableTypeCheckerFactory('OrderedSet')
+    return immutableCheckerFactory('OrderedSet')
   },
   get Record() {
-    return immutableInstanceCheckerFactory('Record')
+    return immutableCheckerFactory('Record', true)
   },
   get Set() {
-    return immutableTypeCheckerFactory('Set')
+    return immutableCheckerFactory('Set')
   },
   get Seq() {
-    return immutableTypeCheckerFactory('Seq')
+    return immutableCheckerFactory('Seq')
   },
   get Stack() {
-    return immutableTypeCheckerFactory('Stack')
+    return immutableCheckerFactory('Stack')
   }
 }
