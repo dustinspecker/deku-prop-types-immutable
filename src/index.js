@@ -20,13 +20,10 @@ const immutableTypeCheck = (type, prop, key) => {
 }
 
 const immutableCheckerFactory = (name, instanceCheck = false) =>
-  checkerFactory(name, (prop, key) => {
-    const typeError = instanceCheck ? immutableInstanceCheck(name, prop, key)
+  checkerFactory(name, (prop, key) =>
+    instanceCheck ? immutableInstanceCheck(name, prop, key)
       : immutableTypeCheck(name, prop, key)
-    if (typeError) {
-      return typeError
-    }
-  })
+  )
 
 module.exports = {
   get Iterable() {
