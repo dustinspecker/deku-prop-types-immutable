@@ -20,7 +20,7 @@ const immutableTypeCheck = (type, prop, key) => {
 }
 
 const immutableCheckerFactory = (name, validator, instanceCheck = false) =>
-  checkerFactory(name, (prop, key) => {
+  checkerFactory((prop, key) => {
     const typeError = instanceCheck ? immutableInstanceCheck(name, prop, key)
       : immutableTypeCheck(name, prop, key)
 
@@ -95,7 +95,7 @@ module.exports = {
   },
   get shape() {
     return shape =>
-      checkerFactory('shape', (prop, key) => {
+      checkerFactory((prop, key) => {
         const validators = Object.keys(shape)
 
         for (let i = 0; i < validators.length; i++) {
