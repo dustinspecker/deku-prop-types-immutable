@@ -59,8 +59,9 @@ listLikeTypes.forEach(listType => {
 })
 
 mapLikeTypes.forEach(mapType => {
+  const capitalizedmapType = mapType[0].toUpperCase() + mapType.slice(1, mapType.length)
+
   test(`validates ${mapType}Of`, t => {
-    const capitalizedmapType = mapType[0].toUpperCase() + mapType.slice(1, mapType.length)
     const types = {
       numbers: ImmutablePropTypes[`${mapType}Of`](PropTypes.number),
       names: ImmutablePropTypes[`${mapType}Of`](PropTypes.string)
@@ -74,5 +75,33 @@ mapLikeTypes.forEach(mapType => {
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
     t.ok(numbersError instanceof TypeError)
     t.is(numbersError.message, 'numbers does not consist of the correct type')
+  })
+
+  test(`validate ${mapType} works with shape`, t => {
+    const types = {
+      config: ImmutablePropTypes.shape({
+        host: PropTypes.string,
+        port: PropTypes.number
+      }),
+      person: ImmutablePropTypes.shape({
+        name: PropTypes.string,
+        age: PropTypes.number
+      })
+    }
+
+    const props = {
+      config: Immutable[capitalizedmapType]({
+        host: 'google.com',
+        port: '8080'
+      }),
+      person: Immutable[capitalizedmapType]({
+        name: 'dustin',
+        age: 25
+      })
+    }
+
+    const configError = types.config.validate(props.config, 'config')
+    t.ok(configError instanceof TypeError)
+    t.is(configError.message, 'Expected config.port to be of type `number`, but got `string`')
   })
 })

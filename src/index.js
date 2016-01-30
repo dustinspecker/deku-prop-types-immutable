@@ -93,6 +93,23 @@ module.exports = {
   get seqOf() {
     return listConsistsOf('Seq')
   },
+  get shape() {
+    return shape =>
+      checkerFactory('shape', (prop, key) => {
+        const validators = Object.keys(shape)
+
+        for (let i = 0; i < validators.length; i++) {
+          const validatorResult = shape[validators[i]].validate(
+            prop.get(validators[i]),
+            `${key}.${validators[i]}`
+          )
+
+          if (validatorResult instanceof Error) {
+            return validatorResult
+          }
+        }
+      })
+  },
   get stack() {
     return immutableCheckerFactory('Stack')
   },
