@@ -19,38 +19,84 @@ const immutableTypeCheck = (type, prop, key) => {
   }
 }
 
-const immutableCheckerFactory = (name, instanceCheck = false) =>
-  checkerFactory(name, (prop, key) =>
-    instanceCheck ? immutableInstanceCheck(name, prop, key)
+const immutableCheckerFactory = (name, validator, instanceCheck = false) =>
+  checkerFactory(name, (prop, key) => {
+    const typeError = instanceCheck ? immutableInstanceCheck(name, prop, key)
       : immutableTypeCheck(name, prop, key)
-  )
+
+    if (typeError) {
+      return typeError
+    }
+
+    return validator(prop, key)
+  })
+
+const listConsistsOf = immutableType => validator =>
+  immutableCheckerFactory(immutableType, (prop, key) => {
+    const anyErrors = prop.some(p => validator.validate(p) instanceof Error)
+    if (anyErrors) {
+      return new TypeError(`${key} does not consist of the correct type`)
+    }
+  })
+
+const mapConsistsOf = (immutableType, instanceCheck) => validator =>
+  immutableCheckerFactory(immutableType, (prop, key) => {
+    const anyErrors = prop.some((k, v) => validator.validate(v) instanceof Error)
+    if (anyErrors) {
+      return new TypeError(`${key} does not consist of the correct type`)
+    }
+  }, instanceCheck)
 
 module.exports = {
   get iterable() {
     return immutableCheckerFactory('Iterable')
   },
+  get iterableOf() {
+    return mapConsistsOf('Iterable')
+  },
   get list() {
     return immutableCheckerFactory('List')
+  },
+  get listOf() {
+    return listConsistsOf('List')
   },
   get map() {
     return immutableCheckerFactory('Map')
   },
+  get mapOf() {
+    return mapConsistsOf('Map')
+  },
   get orderedMap() {
     return immutableCheckerFactory('OrderedMap')
+  },
+  get orderedMapOf() {
+    return mapConsistsOf('OrderedMap')
   },
   get orderedSet() {
     return immutableCheckerFactory('OrderedSet')
   },
+  get orderedSetOf() {
+    return listConsistsOf('OrderedSet')
+  },
   get record() {
-    return immutableCheckerFactory('Record', true)
+    return immutableCheckerFactory('Record', undefined, true)
   },
   get set() {
     return immutableCheckerFactory('Set')
   },
+  get setOf() {
+    return listConsistsOf('Set')
+  },
   get seq() {
     return immutableCheckerFactory('Seq')
   },
+  get seqOf() {
+    return listConsistsOf('Seq')
+  },
   get stack() {
     return immutableCheckerFactory('Stack')
+  },
+  get stackOf() {
+    return listConsistsOf('Stack')
   }
 }

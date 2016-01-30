@@ -53,21 +53,37 @@ export default validate(Counter)
 ## Supported types
 ### ImmutablePropTypes.iterable
 Validate prop is an [Immutable.Iterable](https://facebook.github.io/immutable-js/docs/#/Iterable)
+### ImmutablePropTypes.iterableOf
+Validate each property's value is of a certain type
 ### ImmutablePropTypes.list
 Validate prop is an [Immutable.List](https://facebook.github.io/immutable-js/docs/#/List)
+### ImmutablePropTypes.listOf
+Validate each value is of a certain type
 ### ImmutablePropTypes.map
 Validate prop is an [Immutable.Map](https://facebook.github.io/immutable-js/docs/#/Map)
+### ImmutablePropTypes.mapOf
+Validate each property's value is of a certain type
 ### ImmutablePropTypes.orderedMap
 Validate prop is an [Immutable.OrderedMap](https://facebook.github.io/immutable-js/docs/#/OrderedMap)
+### ImmutablePropTypes.orderedMapOf
+Validate each property's value is of a certain type
 ### ImmutablePropTypes.orderedSet
 Validate prop is an [Immutable.OrderedSet](https://facebook.github.io/immutable-js/docs/#/OrderedSet)
+### ImmutablePropTypes.orderedSetOf
+Validate each value is of a certain type
 ### ImmutablePropTypes.record
 Validate prop is an [Immutable.Record](https://facebook.github.io/immutable-js/docs/#/Record)
 ### ImmutablePropTypes.set
 Validate prop is an [Immutable.Set](https://facebook.github.io/immutable-js/docs/#/Set)
+### ImmutablePropTypes.setOf
+Validate each value is of a certain type
 ### ImmutablePropTypes.seq
 Validate prop is an [Immutable.Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
+### ImmutablePropTypes.seqOf
+Validate each value is of a certain type
 ### ImmutablePropTypes.stack
 Validate prop is an [Immutable.Stack](https://facebook.github.io/immutable-js/docs/#/Stack)
+### ImmutablePropTypes.stackOf
+Validate each value is of a certain type
 ## License
 MIT © [Dustin Specker](https://github.com/dustinspecker)
