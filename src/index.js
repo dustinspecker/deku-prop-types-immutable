@@ -26,31 +26,31 @@ const immutableCheckerFactory = (name, instanceCheck = false) =>
   )
 
 module.exports = {
-  get Iterable() {
+  get iterable() {
     return immutableCheckerFactory('Iterable')
   },
-  get List() {
+  get list() {
     return immutableCheckerFactory('List')
   },
-  get Map() {
+  get map() {
     return immutableCheckerFactory('Map')
   },
-  get OrderedMap() {
+  get orderedMap() {
     return immutableCheckerFactory('OrderedMap')
   },
-  get OrderedSet() {
+  get orderedSet() {
     return immutableCheckerFactory('OrderedSet')
   },
-  get Record() {
+  get record() {
     return immutableCheckerFactory('Record', true)
   },
-  get Set() {
+  get set() {
     return immutableCheckerFactory('Set')
   },
-  get Seq() {
+  get seq() {
     return immutableCheckerFactory('Seq')
   },
-  get Stack() {
+  get stack() {
     return immutableCheckerFactory('Stack')
   }
 }

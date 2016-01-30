@@ -25,7 +25,7 @@ import {PropTypes, validate} from 'deku-prop-types'
 const Counter = ({props}) => <div>{props.count}</div>
 Count.propTypes = {
   count: PropTypes.number.isRequired,
-  config: ImmutablePropTypes.Map
+  config: ImmutablePropTypes.map
 }
 
 export default validate(Counter)
@@ -40,7 +40,7 @@ import {PropTypes, validate} from 'deku-prop-types'
 const Counter = {
   propTypes: {
     count: PropTypes.number.isRequired,
-    config: ImmutablePropTypes.Map
+    config: ImmutablePropTypes.map
   },
   render({props}) {
     return <div>{props.count}</div>
@@ -51,23 +51,23 @@ export default validate(Counter)
 ```
 
 ## Supported types
-### ImmutablePropTypes.Iterable
+### ImmutablePropTypes.iterable
 Validate prop is an [Immutable.Iterable](https://facebook.github.io/immutable-js/docs/#/Iterable)
-### ImmutablePropTypes.List
+### ImmutablePropTypes.list
 Validate prop is an [Immutable.List](https://facebook.github.io/immutable-js/docs/#/List)
-### ImmutablePropTypes.Map
+### ImmutablePropTypes.map
 Validate prop is an [Immutable.Map](https://facebook.github.io/immutable-js/docs/#/Map)
-### ImmutablePropTypes.OrderedMap
+### ImmutablePropTypes.orderedMap
 Validate prop is an [Immutable.OrderedMap](https://facebook.github.io/immutable-js/docs/#/OrderedMap)
-### ImmutablePropTypes.OrderedSet
+### ImmutablePropTypes.orderedSet
 Validate prop is an [Immutable.OrderedSet](https://facebook.github.io/immutable-js/docs/#/OrderedSet)
-### ImmutablePropTypes.Record
+### ImmutablePropTypes.record
 Validate prop is an [Immutable.Record](https://facebook.github.io/immutable-js/docs/#/Record)
-### ImmutablePropTypes.Set
+### ImmutablePropTypes.set
 Validate prop is an [Immutable.Set](https://facebook.github.io/immutable-js/docs/#/Set)
-### ImmutablePropTypes.Seq
+### ImmutablePropTypes.seq
 Validate prop is an [Immutable.Seq](https://facebook.github.io/immutable-js/docs/#/Seq)
-### ImmutablePropTypes.Stack
+### ImmutablePropTypes.stack
 Validate prop is an [Immutable.Stack](https://facebook.github.io/immutable-js/docs/#/Stack)
 ## License
 MIT © [Dustin Specker](https://github.com/dustinspecker)
