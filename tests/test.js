@@ -6,12 +6,12 @@ import ImmutablePropTypes from '../lib'
 
 /* eslint-disable array-bracket-spacing */
 const listLikeTypes =
- [ 'list'
- , 'set'
- , 'orderedSet'
- , 'seq'
- , 'stack'
- ]
+  [ 'list'
+  , 'set'
+  , 'orderedSet'
+  , 'seq'
+  , 'stack'
+  ]
 
 const mapLikeTypes =
   [ 'iterable'
