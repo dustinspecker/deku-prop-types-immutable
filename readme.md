@@ -23,7 +23,7 @@ import ImmutablePropTypes from 'deku-prop-types-immutable'
 import {PropTypes, validate} from 'deku-prop-types'
 
 const Counter = ({props}) => <div>{props.count}</div>
-Count.propTypes = {
+Counter.propTypes = {
   count: PropTypes.number.isRequired,
   config: ImmutablePropTypes.map
 }
