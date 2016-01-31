@@ -101,11 +101,12 @@ module.exports = {
   get shape() {
     return shape =>
       checkerFactory((prop, key) => {
+        const isRecord = prop instanceof Immutable.Record
         const validators = Object.keys(shape)
 
         for (let i = 0; i < validators.length; i++) {
           const validatorResult = shape[validators[i]].validate(
-            prop.get(validators[i]),
+            isRecord ? prop[validators[i]] : prop.get(validators[i]),
             `${key}.${validators[i]}`
           )
 

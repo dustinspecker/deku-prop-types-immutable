@@ -150,3 +150,37 @@ test('validates recordOf', t => {
   t.is(numbersError.message, 'numbers does not consist of the correct type')
   t.is(types.names.validate(props.names, 'names'), undefined)
 })
+
+test('validate record works with shape', t => {
+  const types = {
+    config: ImmutablePropTypes.shape({
+      host: PropTypes.string,
+      port: PropTypes.number
+    }),
+    person: ImmutablePropTypes.shape({
+      name: PropTypes.string,
+      age: PropTypes.number
+    })
+  }
+
+  /* eslint-disable new-cap */
+  const ConfigRecord = Immutable.Record({host: 'domain', port: 80})
+  const PersonRecord = Immutable.Record({name: 'john', age: 99})
+  /* eslint-enable new-cap */
+
+  const props = {
+    config: new ConfigRecord({
+      host: 'google.com',
+      port: '8080'
+    }),
+    person: new PersonRecord({
+      name: 'dustin',
+      age: 25
+    })
+  }
+
+  const configError = types.config.validate(props.config, 'config')
+  t.ok(configError instanceof TypeError)
+  t.is(configError.message, 'Expected config.port to be of type `number`, but got `string`')
+  t.is(types.person.validate(props.person, 'person'), undefined)
+})

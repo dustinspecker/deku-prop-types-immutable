@@ -84,7 +84,7 @@ Validate prop is an [Immutable.Seq](https://facebook.github.io/immutable-js/docs
 ### ImmutablePropTypes.seqOf
 Validate each value is of a certain type
 ### ImmutablePropTypes.shape
-Validate a property's value matches the specified type. This works with `Iterable`, `Map`, and `OrderedMap`.
+Validate a property's value matches the specified type. This works with `Iterable`, `Map`, and `OrderedMap`, `Record`.
 ### ImmutablePropTypes.stack
 Validate prop is an [Immutable.Stack](https://facebook.github.io/immutable-js/docs/#/Stack)
 ### ImmutablePropTypes.stackOf
