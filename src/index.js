@@ -28,7 +28,9 @@ const immutableCheckerFactory = (name, validator, instanceCheck = false) =>
       return typeError
     }
 
-    return validator(prop, key)
+    if (typeof validator === 'function') {
+      return validator(prop, key)
+    }
   })
 
 const listConsistsOf = immutableType => validator =>

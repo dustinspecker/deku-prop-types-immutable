@@ -20,7 +20,7 @@ const mapLikeTypes =
   ]
 /* eslint-enable array-bracket-spacing */
 
-mapLikeTypes.concat(listLikeTypes).concat('record').forEach(iType => {
+mapLikeTypes.concat(listLikeTypes).forEach(iType => {
   test(`validates ${iType}`, t => {
     const capitalizedIType = iType[0].toUpperCase() + iType.slice(1, iType.length)
     const types = {
@@ -36,7 +36,29 @@ mapLikeTypes.concat(listLikeTypes).concat('record').forEach(iType => {
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
     t.ok(numbersError instanceof TypeError)
     t.is(numbersError.message, `Expected numbers to be an \`Immutable ${capitalizedIType}\`, but got \`object\``)
+    t.is(types.names.validate(props.names, 'names'), undefined)
   })
+})
+
+test('validates Record', t => {
+  const types = {
+    numbers: ImmutablePropTypes.record,
+    names: ImmutablePropTypes.record
+  }
+
+  /* eslint-disable new-cap */
+  const Record = Immutable.Record({first: 'dustin'})
+  /* eslint-enable new-cap */
+
+  const props = {
+    numbers: [3, 4, 5],
+    names: new Record()
+  }
+
+  const numbersError = types.numbers.validate(props.numbers, 'numbers')
+  t.ok(numbersError instanceof TypeError)
+  t.is(numbersError.message, 'Expected numbers to be an `Immutable Record`, but got `object`')
+  t.is(types.names.validate(props.names, 'names'), undefined)
 })
 
 listLikeTypes.forEach(listType => {
@@ -75,6 +97,7 @@ mapLikeTypes.forEach(mapType => {
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
     t.ok(numbersError instanceof TypeError)
     t.is(numbersError.message, 'numbers does not consist of the correct type')
+    t.is(types.names.validate(props.names, 'names'), undefined)
   })
 
   test(`validate ${mapType} works with shape`, t => {
@@ -103,5 +126,6 @@ mapLikeTypes.forEach(mapType => {
     const configError = types.config.validate(props.config, 'config')
     t.ok(configError instanceof TypeError)
     t.is(configError.message, 'Expected config.port to be of type `number`, but got `string`')
+    t.is(types.person.validate(props.person, 'person'), undefined)
   })
 })
