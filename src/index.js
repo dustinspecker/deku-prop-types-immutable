@@ -83,6 +83,9 @@ module.exports = {
   get record() {
     return immutableCheckerFactory('Record', undefined, true)
   },
+  get recordOf() {
+    return mapConsistsOf('Record', true)
+  },
   get set() {
     return immutableCheckerFactory('Set')
   },

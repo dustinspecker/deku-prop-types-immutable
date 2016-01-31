@@ -129,3 +129,24 @@ mapLikeTypes.forEach(mapType => {
     t.is(types.person.validate(props.person, 'person'), undefined)
   })
 })
+
+test('validates recordOf', t => {
+  const types = {
+    numbers: ImmutablePropTypes.recordOf(PropTypes.number),
+    names: ImmutablePropTypes.recordOf(PropTypes.string)
+  }
+
+  /* eslint-disable new-cap */
+  const NumbersRecord = Immutable.Record({age: 99, year: 1900})
+  const NamesRecord = Immutable.Record({first: 'john', last: 'doe'})
+
+  const props = {
+    numbers: new NumbersRecord({age: 27, year: '1990'}),
+    names: new NamesRecord({first: 'dustin', last: 'specker'})
+  }
+
+  const numbersError = types.numbers.validate(props.numbers, 'numbers')
+  t.ok(numbersError instanceof TypeError)
+  t.is(numbersError.message, 'numbers does not consist of the correct type')
+  t.is(types.names.validate(props.names, 'names'), undefined)
+})

@@ -73,6 +73,8 @@ Validate prop is an [Immutable.OrderedSet](https://facebook.github.io/immutable-
 Validate each value is of a certain type
 ### ImmutablePropTypes.record
 Validate prop is an [Immutable.Record](https://facebook.github.io/immutable-js/docs/#/Record)
+### ImmutablePropTypes.recordOf
+Validate each value is of a certain type
 ### ImmutablePropTypes.set
 Validate prop is an [Immutable.Set](https://facebook.github.io/immutable-js/docs/#/Set)
 ### ImmutablePropTypes.setOf
