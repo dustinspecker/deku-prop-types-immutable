@@ -1,6 +1,6 @@
 {
   "name": "deku-prop-types-immutable",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Immutable prop type validation for Deku components",
   "main": "lib/index.js",
   "scripts": {
