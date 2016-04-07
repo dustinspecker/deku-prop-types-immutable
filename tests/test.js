@@ -34,7 +34,7 @@ mapLikeTypes.concat(listLikeTypes).forEach(iType => {
     }
 
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
-    t.ok(numbersError instanceof TypeError)
+    t.truthy(numbersError instanceof TypeError)
     t.is(numbersError.message, `Expected numbers to be an \`Immutable ${capitalizedIType}\`, but got \`object\``)
     t.is(types.names.validate(props.names, 'names'), undefined)
   })
@@ -56,7 +56,7 @@ test('validates Record', t => {
   }
 
   const numbersError = types.numbers.validate(props.numbers, 'numbers')
-  t.ok(numbersError instanceof TypeError)
+  t.truthy(numbersError instanceof TypeError)
   t.is(numbersError.message, 'Expected numbers to be an `Immutable Record`, but got `object`')
   t.is(types.names.validate(props.names, 'names'), undefined)
 })
@@ -75,7 +75,7 @@ listLikeTypes.forEach(listType => {
     }
 
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
-    t.ok(numbersError instanceof TypeError)
+    t.truthy(numbersError instanceof TypeError)
     t.is(numbersError.message, 'numbers does not consist of the correct type')
   })
 })
@@ -95,7 +95,7 @@ mapLikeTypes.forEach(mapType => {
     }
 
     const numbersError = types.numbers.validate(props.numbers, 'numbers')
-    t.ok(numbersError instanceof TypeError)
+    t.truthy(numbersError instanceof TypeError)
     t.is(numbersError.message, 'numbers does not consist of the correct type')
     t.is(types.names.validate(props.names, 'names'), undefined)
   })
@@ -124,7 +124,7 @@ mapLikeTypes.forEach(mapType => {
     }
 
     const configError = types.config.validate(props.config, 'config')
-    t.ok(configError instanceof TypeError)
+    t.truthy(configError instanceof TypeError)
     t.is(configError.message, 'Expected config.port to be of type `number`, but got `string`')
     t.is(types.person.validate(props.person, 'person'), undefined)
   })
@@ -146,7 +146,7 @@ test('validates recordOf', t => {
   }
 
   const numbersError = types.numbers.validate(props.numbers, 'numbers')
-  t.ok(numbersError instanceof TypeError)
+  t.truthy(numbersError instanceof TypeError)
   t.is(numbersError.message, 'numbers does not consist of the correct type')
   t.is(types.names.validate(props.names, 'names'), undefined)
 })
@@ -180,7 +180,7 @@ test('validate record works with shape', t => {
   }
 
   const configError = types.config.validate(props.config, 'config')
-  t.ok(configError instanceof TypeError)
+  t.truthy(configError instanceof TypeError)
   t.is(configError.message, 'Expected config.port to be of type `number`, but got `string`')
   t.is(types.person.validate(props.person, 'person'), undefined)
 })
