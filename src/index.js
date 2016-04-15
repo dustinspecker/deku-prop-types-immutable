@@ -4,6 +4,7 @@ import Immutable from 'immutable'
 const createTypeError = (type, prop, key) => {
   const actualType = typeof prop
   const errMsg = `Expected ${key} to be an \`Immutable ${type}\`, but got \`${actualType}\``
+
   return new TypeError(errMsg)
 }
 
