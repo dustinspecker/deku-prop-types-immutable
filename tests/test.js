@@ -4,21 +4,19 @@ import test from 'ava'
 
 import ImmutablePropTypes from '../lib'
 
-/* eslint-disable array-bracket-spacing */
-const listLikeTypes =
-  [ 'list'
-  , 'set'
-  , 'orderedSet'
-  , 'seq'
-  , 'stack'
-  ]
+const listLikeTypes = [
+  'list',
+  'set',
+  'orderedSet',
+  'seq',
+  'stack'
+]
 
-const mapLikeTypes =
-  [ 'iterable'
-  , 'map'
-  , 'orderedMap'
-  ]
-/* eslint-enable array-bracket-spacing */
+const mapLikeTypes = [
+  'iterable',
+  'map',
+  'orderedMap'
+]
 
 mapLikeTypes.concat(listLikeTypes).forEach(iType => {
   test(`validates ${iType}`, t => {
