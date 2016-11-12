@@ -32,7 +32,7 @@
     "eslint-config-dustinspecker": "^1.1.0",
     "eslint-plugin-no-use-extend-native": "^0.3.4",
     "eslint-plugin-xo": "^1.0.0",
-    "nyc": "^6.0.0"
+    "nyc": "^8.4.0"
   },
   "ava": {
     "files": [
@@ -44,6 +44,7 @@
   },
   "nyc": {
     "exclude": [
+      "node_modules",
       "tests"
     ]
   },
